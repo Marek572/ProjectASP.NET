@@ -13,5 +13,7 @@ namespace ProjectASP.NET.Models
             base(options)
         { }
         public DbSet<UserModel> Users { get; set; }
+        public DbSet<GameModel> Games { get; set; }
+
     }
 }

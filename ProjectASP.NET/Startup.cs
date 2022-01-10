@@ -29,7 +29,7 @@ namespace ProjectASP.NET
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration["Data:Connection"]));
             services.AddTransient<ICRUDUserRepository, CRUDUserRepository>();
-            /*services.AddTransient<ITimeCRUDModel, TimeCRUDModel>();*/
+            services.AddTransient<ICRUDGameRepository, CRUDGameRepository>();
 
             services.AddControllersWithViews();
         }

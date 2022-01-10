@@ -1,0 +1,45 @@
+﻿@model ProjectASP.NET.Models.GameModel
+
+@{ }
+
+<div class="container-fluid" m-3>
+    <h2>Register</h2>
+    <form asp-controller="Game" asp-action="Add" method="post">
+        <div class="mb-1">
+            <label asp-for="Availability">Available?</label>
+            <input class="ml-2 form-check-input" asp-for="Availability" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Title">Title</label>
+            <span asp-validation-for="Title" class="text-danger"></span>
+            <input class="form-control" asp-for="Title" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="genre">Genre</label>
+            <span asp-validation-for="genre" class="text-danger"></span>
+            <select class="form-control mt-2" asp-for="genre" asp-items="Html.GetEnumSelectList<GameModel.Genre>()"></select>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Platform">Platform</label>
+            <span asp-validation-for="Platform" class="text-danger"></span>
+            <input class="form-control" asp-for="Platform" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Developer">Developer</label>
+            <span asp-validation-for="Developer" class="text-danger"></span>
+            <input class="form-control" asp-for="Developer" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Publisher">Publisher</label>
+            <span asp-validation-for="Publisher" class="text-danger"></span>
+            <input class="form-control" asp-for="Publisher" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Borrowed">Borrowed by</label>
+            <input class="form-control" asp-for="Borrowed" />
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-primary" type="submit">Save</button>
+        </div>
+    </form>
+</div>

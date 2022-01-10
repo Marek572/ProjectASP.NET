@@ -1,0 +1,23 @@
+﻿@model ProjectASP.NET.Models.GameModel
+
+@{ }
+
+<div class="container-fluid" m-3>
+    <h2>Edit game</h2>
+    <form asp-action="Edit" method="post">
+        <input asp-for="GameId"/>
+        <div class="mb-3">
+            <label asp-for="Availability">Availability</label>
+            @*<span asp-validation-for="name" class="text-danger"></span>*@
+            <input class="ml-2 form-check-input" asp-for="Availability" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Borrowed">Borrowed by</label>
+            @*<span asp-validation-for="Borrowed" class="text-danger"></span>*@
+            <input class="form-control" asp-for="Borrowed" />
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-primary">Save</button>
+        </div>
+    </form>
+</div>

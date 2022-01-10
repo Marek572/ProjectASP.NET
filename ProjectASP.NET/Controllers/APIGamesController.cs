@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjectASP.NET.Controllers
 {
-    [Route("api/game")] //[controller]
+    [Route("api/games")]
     [ApiController]
     public class APIGamesController : ControllerBase
     {
@@ -19,9 +19,9 @@ namespace ProjectASP.NET.Controllers
         }
 
         [HttpGet]
-        public List<UserModel> GetUser()    //GameModel, GetGame
+        public List<GameModel> GetGame()
         {
-            return _context.Users.ToList();
+            return _context.Games.ToList();
         }
     }
 }

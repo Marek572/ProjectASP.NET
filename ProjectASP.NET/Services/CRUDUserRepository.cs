@@ -1,4 +1,5 @@
-﻿using ProjectASP.NET.Models;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+using ProjectASP.NET.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace ProjectASP.NET
             _context = context;
         }
 
-        public UserModel FindUser(int id)
+        public UserModel FindUserById(int id)
         {
             return _context.Users.Find(id);
         }
@@ -29,16 +30,20 @@ namespace ProjectASP.NET
 
         public UserModel UpdateUser(UserModel user)
         {
-            var entity = _context.Users.Update(user).Entity;
+            UserModel original = _context.Users.Find(user.UserId);
+            original.Name = user.Name;
+            original.Surname = user.Surname;
+            original.Email = user.Email;
+            original.Phone = user.Phone;
+            EntityEntry<UserModel> entityEntry = _context.Users.Update(original);
             _context.SaveChanges();
-            return entity;
+            return entityEntry.Entity;
         }
 
-        public UserModel DeleteUser(int id)
+        public void DeleteUser(int id)
         {
-            var entity = _context.Users.Remove(FindUser(id)).Entity;
+            _context.Users.Remove(_context.Users.Find(id));
             _context.SaveChanges();
-            return entity;
         }
 
         public List<UserModel> FindAllUsers()

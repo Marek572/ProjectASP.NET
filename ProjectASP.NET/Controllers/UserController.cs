@@ -16,11 +16,6 @@ namespace ProjectASP.NET.Controllers
             this.repository = repository;
         }
 
-        public IActionResult Index()
-        {
-            return View(repository.FindAllUsers());
-        }
-
         public IActionResult AddUser()
         {
             return View();
@@ -31,13 +26,35 @@ namespace ProjectASP.NET.Controllers
         {
             if (ModelState.IsValid)
             {
-                return View("ConfirmUser");
+                return View("ConfirmUser", repository.AddUser(user));
             }
             else
             {
                 return View("AddUser");
             }
 
+        }
+
+        public IActionResult Index()
+        {
+            return View(repository.FindAllUsers());
+        }
+
+        public IActionResult EditUser(int id)
+        {
+            return View(repository.FindUserById(id));
+        }
+
+        public IActionResult Edit(UserModel user)
+        {
+            repository.UpdateUser(user);
+            return View("Index", repository.FindAllUsers());
+        }
+
+        public IActionResult DeleteUser(int id)
+        {
+            repository.DeleteUser(id);
+            return View("Index", repository.FindAllUsers());
         }
     }
 }
