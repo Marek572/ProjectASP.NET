@@ -10,7 +10,7 @@ using ProjectASP.NET.Models;
 namespace ProjectASP.NET.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220110190930_test")]
+    [Migration("20220110195804_test")]
     partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,9 +31,6 @@ namespace ProjectASP.NET.Migrations
                     b.Property<bool>("Availability")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Borrowed")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Developer")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -50,10 +47,18 @@ namespace ProjectASP.NET.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserModelUserId")
+                        .HasColumnType("int");
+
                     b.Property<int>("genre")
                         .HasColumnType("int");
 
                     b.HasKey("GameId");
+
+                    b.HasIndex("UserModelUserId");
 
                     b.ToTable("Games");
                 });
@@ -67,9 +72,6 @@ namespace ProjectASP.NET.Migrations
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Borrowed")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -99,6 +101,15 @@ namespace ProjectASP.NET.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("ProjectASP.NET.Models.GameModel", b =>
+                {
+                    b.HasOne("ProjectASP.NET.Models.UserModel", "UserModel")
+                        .WithMany()
+                        .HasForeignKey("UserModelUserId");
+
+                    b.Navigation("UserModel");
                 });
 #pragma warning restore 612, 618
         }

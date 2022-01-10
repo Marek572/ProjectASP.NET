@@ -30,7 +30,9 @@ namespace ProjectASP.NET.Models
         [Required(ErrorMessage = "Enter game publisher!")]
         public string Publisher { get; set; }
 
-        public string Borrowed { get; set; }
+        public UserModel UserModel { get; set; }
+        
+        public int UserId { get; set; }
 
         public enum Genre //TODO: choosing 2 or more genres feature
         {

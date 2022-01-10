@@ -54,8 +54,6 @@ namespace ProjectASP.NET.Models
         [DataType(DataType.Password)]
         public string ConfirmPass { get; set; }
 
-        public string Borrowed { get; set; }
-
         public enum Gender
         {
             Male = 0,

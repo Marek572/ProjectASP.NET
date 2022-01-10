@@ -32,7 +32,7 @@ namespace ProjectASP.NET
         {
             GameModel original = _context.Games.Find(game.GameId);
             original.Availability = game.Availability;
-            original.Borrowed = game.Borrowed;
+            original.UserId = game.UserId;
             EntityEntry<GameModel> entityEntry = _context.Games.Update(original);
             _context.SaveChanges();
             return entityEntry.Entity;
