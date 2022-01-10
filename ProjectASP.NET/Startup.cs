@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ProjectASP.NET.Data;
 using ProjectASP.NET.Models;
 using System;
 using System.Collections.Generic;
@@ -26,12 +27,29 @@ namespace ProjectASP.NET
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration["Data:Connection"]));
             services.AddTransient<ICRUDUserRepository, CRUDUserRepository>();
             services.AddTransient<ICRUDGameRepository, CRUDGameRepository>();
 
             services.AddControllersWithViews();
+
+            services.AddDbContext<AppIdentityDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration["Data:AppIdentity:ConnectionString"]));
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDbContext>()
+                    .AddDefaultTokenProviders();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,12 +65,13 @@ namespace ProjectASP.NET
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+                
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthorization();
+            app.UseAuthentication();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
@@ -60,6 +79,7 @@ namespace ProjectASP.NET
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+            IdentitySeedData.EnsurePopulated(app);
         }
     }
 }
