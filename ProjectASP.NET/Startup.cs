@@ -46,6 +46,7 @@ namespace ProjectASP.NET
             services.AddDbContext<AppIdentityDbContext>(options =>
                 options.UseSqlServer(
                     Configuration["Data:AppIdentity:ConnectionString"]));
+
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppIdentityDbContext>()
                     .AddDefaultTokenProviders();

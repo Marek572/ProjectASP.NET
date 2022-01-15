@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ProjectASP.NET.Migrations
+namespace ProjectASP.NET.Migrations.AppIdentityDb
 {
-    public partial class test : Migration
+    public partial class test2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

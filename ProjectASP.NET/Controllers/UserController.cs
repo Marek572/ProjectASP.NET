@@ -9,30 +9,11 @@ namespace ProjectASP.NET.Controllers
 {
     public class UserController : Controller
     {
-        private ICRUDUserRepository repository;
+        private readonly ICRUDUserRepository repository;
 
         public UserController(ICRUDUserRepository repository)
         {
             this.repository = repository;
-        }
-
-        public IActionResult AddUser()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Add(UserModel user)
-        {
-            if (ModelState.IsValid)
-            {
-                return View("ConfirmUser", repository.AddUser(user));
-            }
-            else
-            {
-                return View("AddUser");
-            }
-
         }
 
         public IActionResult Index()

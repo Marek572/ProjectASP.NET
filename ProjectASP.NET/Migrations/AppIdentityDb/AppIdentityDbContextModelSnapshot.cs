@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectASP.NET.Data;
 
-namespace ProjectASP.NET.Migrations
+namespace ProjectASP.NET.Migrations.AppIdentityDb
 {
     [DbContext(typeof(AppIdentityDbContext))]
     partial class AppIdentityDbContextModelSnapshot : ModelSnapshot

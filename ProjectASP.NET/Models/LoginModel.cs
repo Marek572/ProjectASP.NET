@@ -8,11 +8,13 @@ namespace ProjectASP.NET.Models
 {
     public class LoginModel
     {
-        [Required]
-        public string Name { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Enter your username!")]
+        public string Username { get; set; }
+
+        [Required(ErrorMessage = "Enter your password!")]
         [UIHint("password")]
         public string Password { get; set; }
+
         public string ReturnUrl { get; set; } = "/";
     }
 }

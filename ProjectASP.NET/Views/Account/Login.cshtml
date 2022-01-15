@@ -1,0 +1,23 @@
+﻿@model ProjectASP.NET.Models.LoginModel
+
+<div class="row m-5">
+    <div class="col-lg-12">
+        <h2>Login</h2>
+        <form asp-controller="Account" asp-action="Login" method="post">
+            <div class="col col-lg-3 pl-0">
+                <label asp-for="Username">Username</label>
+                <span asp-validation-for="Username" class="text-danger"></span>
+                <input class="form-control" asp-for="Username" />
+            </div>
+            <div class="col col-lg-3 pl-0 mt-1">
+                <label asp-for="Password">Password</label>
+                <span asp-validation-for="Password" class="text-danger"></span>
+                <input class="form-control" asp-for="Password" />
+            </div>
+            <div class="col col-lg-3 pl-0 mt-2">
+                <button class="btn btn-primary" type="submit">Login</button>
+                <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

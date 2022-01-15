@@ -11,7 +11,7 @@ namespace ProjectASP.NET.Data
     public static class IdentitySeedData
     {
         private const string adminUser = "Admin";
-        private const string adminPassword = "Secret123$";
+        private const string adminPassword = "zaq1@wsxC";
         public static async void EnsurePopulated(IApplicationBuilder app)
         {
             using (var scope = app.ApplicationServices.CreateScope())

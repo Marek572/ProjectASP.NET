@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectASP.NET.Data;
 
-namespace ProjectASP.NET.Migrations
+namespace ProjectASP.NET.Migrations.AppIdentityDb
 {
     [DbContext(typeof(AppIdentityDbContext))]
-    [Migration("20220110205323_test")]
-    partial class test
+    [Migration("20220115162605_test2")]
+    partial class test2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
