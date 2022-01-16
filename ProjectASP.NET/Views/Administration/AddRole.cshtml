@@ -1,0 +1,18 @@
+﻿@model ProjectASP.NET.Models.RoleModel
+
+<div class="row m-5">
+    <div class="col-lg-12">
+        <h2>Add role</h2>
+        <form method="post">
+            <div class="col col-lg-3 pl-0">
+                <label asp-for="RoleName">Role name</label>
+                @*<span asp-validation-for="Title" class="text-danger"></span>*@
+                <input class="form-control" asp-for="RoleName" />
+            </div>
+            <div class="col col-lg-3 pl-0 mt-2">
+                <button class="btn btn-primary" type="submit">Login</button>
+                <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

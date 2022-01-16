@@ -14,6 +14,7 @@ namespace ProjectASP.NET.Models
         { }
         public DbSet<UserModel> Users { get; set; }
         public DbSet<GameModel> Games { get; set; }
+        public DbSet<ApiModel> Api { get; set; }
 
     }
 }
