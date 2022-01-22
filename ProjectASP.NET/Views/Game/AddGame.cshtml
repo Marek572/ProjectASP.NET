@@ -2,12 +2,12 @@
 
 @{ }
 
-<div class="container-fluid" m-3>
-    <h2>Register</h2>
+<div class="container-fluid m-3">
+    <h2>Add game</h2>
     <form asp-controller="Game" asp-action="Add" method="post">
         <div class="mb-1">
             <label asp-for="Availability">Available?</label>
-            <input class="ml-2 form-check-input" asp-for="Availability" />
+            <input class="ml-2 form-check-input" asp-for="Availability" checked />
         </div>
         <div class="mb-3">
             <label asp-for="Title">Title</label>
@@ -35,8 +35,9 @@
             <input class="form-control" asp-for="Publisher" />
         </div>
         <div class="mb-3">
-            <label asp-for="UserId">Borrowed by</label>
-            <input class="form-control" asp-for="UserId" />
+            <label asp-for="UserName">Username</label>
+            <span asp-validation-for="UserName" class="text-danger"></span>
+            <input class="form-control" asp-for="UserName" />
         </div>
         <div class="col col-lg-3 pl-0 mt-2">
             <button class="btn btn-primary" type="submit">Save</button>

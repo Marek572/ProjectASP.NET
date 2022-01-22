@@ -12,7 +12,7 @@ namespace ProjectASP.NET.Models
     {
         [HiddenInput]
         [Key]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         [Required(ErrorMessage = "Enter your name!")]
         [MaxLength(20, ErrorMessage = "Your name cannot be longer than 20 characters")]

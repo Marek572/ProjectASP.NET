@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProjectASP.NET.Models;
 using System;
@@ -10,6 +11,7 @@ namespace ProjectASP.NET.Controllers
 {
     [Route("api/games")]
     [ApiController]
+    [AllowAnonymous]
     public class RestController : ControllerBase
     {
         private ApplicationDbContext _context;
@@ -19,29 +21,33 @@ namespace ProjectASP.NET.Controllers
         }
 
         [HttpPost]
-        public ApiModel AddGame([FromBody] ApiModel game)
+        public GameModel AddGame([FromBody] GameModel game)
         {
-            var entity = _context.Api.Add(game).Entity;
+            var entity = _context.Games.Add(game).Entity;
             _context.SaveChanges();
             return entity;
         }
 
         [HttpGet]
-        public List<ApiModel> GetGame()
+        public List<GameModel> GetGame()
         {
-            return _context.Api.ToList();
+            return _context.Games.ToList();
         }
 
         [HttpPut("{id}")]
-        public ActionResult<ApiModel> EditGame(int id, [FromBody] ApiModel game)
+        public ActionResult<GameModel> EditGame(int id, [FromBody] GameModel game)
         {
-            var x = _context.Api.Where(s => s.GameId == id).FirstOrDefault();
+            var x = _context.Games.Where(s => s.GameId == id).FirstOrDefault();
 
             if (x != null)
             {
                 x.Availability = game.Availability;
+                x.Title = game.Title;
                 x.genre = game.genre;
+                x.Platform = game.Platform;
                 x.Developer = game.Developer;
+                x.Publisher = game.Publisher;
+                x.UserName = game.UserName;
                 _context.SaveChanges();
             }
             else
@@ -53,9 +59,9 @@ namespace ProjectASP.NET.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        public ApiModel DeleteGame(int id)
+        public GameModel DeleteGame(int id)
         {
-            var game = _context.Api.Where(s => s.GameId == id).First();
+            var game = _context.Games.Where(s => s.GameId == id).First();
             _context.Remove(game);
             _context.SaveChanges();
             return game;

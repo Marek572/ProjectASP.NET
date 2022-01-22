@@ -8,11 +8,11 @@ namespace ProjectASP.NET
 {
     public interface ICRUDUserRepository
     {
-        UserModel FindUserById(int id);
+        UserModel FindUserById(string id);
 
         UserModel AddUser(UserModel user);
 
-        void DeleteUser(int id);
+        void DeleteUser(string id);
 
         UserModel UpdateUser(UserModel user);
 

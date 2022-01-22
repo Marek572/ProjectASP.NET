@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProjectASP.NET.Data;
+using ProjectASP.NET.Filter;
 using ProjectASP.NET.Models;
 using System;
 using System.Collections.Generic;
@@ -59,6 +60,11 @@ namespace ProjectASP.NET
                                  .Build();
                 options.Filters.Add(new AuthorizeFilter(policy));
             }).AddXmlSerializerFormatters();
+
+            services.AddSingleton<BasicAuthorizationFilter>();
+            services.AddMvc().AddMvcOptions(options => {
+                options.Filters.AddService<BasicAuthorizationFilter>();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

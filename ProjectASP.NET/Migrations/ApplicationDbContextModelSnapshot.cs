@@ -79,11 +79,11 @@ namespace ProjectASP.NET.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<string>("UserModelUserId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("UserModelUserId")
-                        .HasColumnType("int");
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("genre")
                         .HasColumnType("int");
@@ -97,10 +97,8 @@ namespace ProjectASP.NET.Migrations
 
             modelBuilder.Entity("ProjectASP.NET.Models.UserModel", b =>
                 {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");

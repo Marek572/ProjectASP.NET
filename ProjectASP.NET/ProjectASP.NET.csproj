@@ -13,7 +13,7 @@
     <None Include="Views\Game\ConfirmGame.cshtml" />
     <None Include="Views\Game\EditGame.cshtml" />
     <None Include="Views\Game\Index.cshtml" />
-    <None Include="Views\User\EditUser.cshtml" />
+    <None Include="Views\User\EditUserPage.cshtml" />
     <None Include="Views\User\Index.cshtml" />
   </ItemGroup>
 
@@ -26,6 +26,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="xunit" Version="2.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

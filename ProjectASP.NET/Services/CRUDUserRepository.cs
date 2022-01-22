@@ -16,7 +16,7 @@ namespace ProjectASP.NET
             _context = context;
         }
 
-        public UserModel FindUserById(int id)
+        public UserModel FindUserById(string id)
         {
             return _context.Users.Find(id);
         }
@@ -40,7 +40,7 @@ namespace ProjectASP.NET
             return entityEntry.Entity;
         }
 
-        public void DeleteUser(int id)
+        public void DeleteUser(string id)
         {
             _context.Users.Remove(_context.Users.Find(id));
             _context.SaveChanges();

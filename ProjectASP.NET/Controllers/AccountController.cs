@@ -58,6 +58,7 @@ namespace ProjectASP.NET.Controllers
                     await _signInManager.SignInAsync(identityUser, isPersistent: false);
                     UserModel user = new UserModel()
                     {
+                        UserId = identityUser.Id,
                         Name = model.Name,
                         Surname = model.Surname,
                         BirthDate = model.BirthDate,
@@ -95,7 +96,7 @@ namespace ProjectASP.NET.Controllers
                     }
                 }
             }
-            ModelState.AddModelError("", "Nieprawidłowa nazwa użytkownika lub hasło");
+            ModelState.AddModelError("", "Login and password doesn't match");
             return View(loginModel);
         }
 
@@ -105,6 +106,33 @@ namespace ProjectASP.NET.Controllers
         {
             await _signInManager.SignOutAsync();
             return Redirect(returnUrl);
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            var IdentityUser = await _userManager.FindByIdAsync(id);
+            var result = await _userManager.DeleteAsync(IdentityUser);
+            if(result.Succeeded)
+            {
+                _repository.DeleteUser(id);
+                await _signInManager.SignOutAsync();
+            }
+            return View("../Home/Index", _repository.FindAllUsers());
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> EditUserData(UserModel user)
+        {
+            IdentityUser IUser = await _userManager.FindByIdAsync(user.UserId);
+            var EmailResult = await _userManager.ChangeEmailAsync(IUser, user.Email, null);
+            var UserNameResult = await _userManager.SetUserNameAsync(IUser, user.Username);
+            if(EmailResult.Succeeded && UserNameResult.Succeeded)
+            {
+                _repository.UpdateUser(user);
+            }
+            return View("../User/Index", _repository.FindAllUsers());
         }
     }
 }

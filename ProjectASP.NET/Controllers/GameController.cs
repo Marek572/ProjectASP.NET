@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ProjectASP.NET.Models;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace ProjectASP.NET.Controllers
 
         public IActionResult AddGame()
         {
-            return View();
+            return View();            
         }
 
         [HttpPost]

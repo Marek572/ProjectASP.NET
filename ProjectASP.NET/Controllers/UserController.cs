@@ -18,24 +18,12 @@ namespace ProjectASP.NET.Controllers
 
         public IActionResult Index()
         {
-            return View(repository.FindAllUsers());
+            return View("Index",repository.FindAllUsers());
         }
 
-        public IActionResult EditUser(int id)
+        public IActionResult EditUserPage(string id)
         {
             return View(repository.FindUserById(id));
-        }
-
-        public IActionResult Edit(UserModel user)
-        {
-            repository.UpdateUser(user);
-            return View("Index", repository.FindAllUsers());
-        }
-
-        public IActionResult DeleteUser(int id)
-        {
-            repository.DeleteUser(id);
-            return View("Index", repository.FindAllUsers());
         }
     }
 }
