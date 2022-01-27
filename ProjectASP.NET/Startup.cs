@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProjectASP.NET.Data;
 using ProjectASP.NET.Filter;
+using ProjectASP.NET.Interfaces;
 using ProjectASP.NET.Models;
 using System;
 using System.Collections.Generic;
@@ -43,6 +44,7 @@ namespace ProjectASP.NET
             options.UseSqlServer(Configuration["Data:Connection"]));
             services.AddTransient<ICRUDUserRepository, CRUDUserRepository>();
             services.AddTransient<ICRUDGameRepository, CRUDGameRepository>();
+            services.AddTransient<ICRUDRestRepository, CRUDRestRepository>();
 
             services.AddControllersWithViews();
 

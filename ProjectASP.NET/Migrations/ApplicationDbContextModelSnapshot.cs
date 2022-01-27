@@ -19,40 +19,6 @@ namespace ProjectASP.NET.Migrations
                 .HasAnnotation("ProductVersion", "5.0.13")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ProjectASP.NET.Models.ApiModel", b =>
-                {
-                    b.Property<int>("GameId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Availability")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Developer")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Platform")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Publisher")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("genre")
-                        .HasColumnType("int");
-
-                    b.HasKey("GameId");
-
-                    b.ToTable("Api");
-                });
-
             modelBuilder.Entity("ProjectASP.NET.Models.GameModel", b =>
                 {
                     b.Property<int>("GameId")
@@ -81,9 +47,6 @@ namespace ProjectASP.NET.Migrations
 
                     b.Property<string>("UserModelUserId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("genre")
                         .HasColumnType("int");

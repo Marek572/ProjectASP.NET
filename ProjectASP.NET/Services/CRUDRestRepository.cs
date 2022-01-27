@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+using ProjectASP.NET.Interfaces;
 using ProjectASP.NET.Models;
 using System;
 using System.Collections.Generic;
@@ -7,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace ProjectASP.NET
 {
-    public class CRUDGameRepository : ICRUDGameRepository
+    public class CRUDRestRepository : ICRUDRestRepository
     {
         private ApplicationDbContext _context;
 
-        public CRUDGameRepository(ApplicationDbContext context)
+        public CRUDRestRepository(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -28,11 +29,16 @@ namespace ProjectASP.NET
             return entity;
         }
 
-        public GameModel UpdateGame(GameModel game, UserModel user)
+        public GameModel UpdateGame(GameModel game)
         {
             GameModel original = _context.Games.Find(game.GameId);
             original.Availability = game.Availability;
-            original.UserModel.Username = game.UserModel.Username;
+            original.Title = game.Title;
+            original.genre = game.genre;
+            original.Platform = game.Platform;
+            original.Developer = game.Developer;
+            original.Publisher = game.Publisher;
+
             EntityEntry<GameModel> entityEntry = _context.Games.Update(original);
             _context.SaveChanges();
             return entityEntry.Entity;

@@ -32,8 +32,6 @@ namespace ProjectASP.NET.Models
 
         public UserModel UserModel { get; set; }
 
-        public string? UserName { get; set; }
-
         public enum Genre //TODO: choosing 2 or more genres feature
         {
             Action,

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ProjectASP.NET.Filter;
+using ProjectASP.NET.Interfaces;
 using ProjectASP.NET.Models;
 using System;
 using System.Collections.Generic;
@@ -14,57 +16,48 @@ namespace ProjectASP.NET.Controllers
     [AllowAnonymous]
     public class RestController : ControllerBase
     {
-        private ApplicationDbContext _context;
-        public RestController(ApplicationDbContext context)
+        private ICRUDRestRepository _restRepository;
+        public RestController(ICRUDRestRepository restRepository)
         {
-            _context = context;
+            _restRepository = restRepository;
         }
 
+        [DisableBasic]
         [HttpPost]
         public GameModel AddGame([FromBody] GameModel game)
         {
-            var entity = _context.Games.Add(game).Entity;
-            _context.SaveChanges();
-            return entity;
+            _restRepository.AddGame(game);
+            return game;
         }
 
+        [DisableBasic]
         [HttpGet]
-        public List<GameModel> GetGame()
+        [Route("{id}")]
+        public GameModel FindGameById(int id)
         {
-            return _context.Games.ToList();
+            return _restRepository.FindGameById(id);
+        }
+
+        [DisableBasic]
+        [HttpGet]
+        public List<GameModel> FindAllGames()
+        {
+            return _restRepository.FindAllGames();
         }
 
         [HttpPut("{id}")]
-        public ActionResult<GameModel> EditGame(int id, [FromBody] GameModel game)
+        public ActionResult<GameModel> UpdateGame([FromBody] GameModel game)
         {
-            var x = _context.Games.Where(s => s.GameId == id).FirstOrDefault();
-
-            if (x != null)
-            {
-                x.Availability = game.Availability;
-                x.Title = game.Title;
-                x.genre = game.genre;
-                x.Platform = game.Platform;
-                x.Developer = game.Developer;
-                x.Publisher = game.Publisher;
-                x.UserName = game.UserName;
-                _context.SaveChanges();
-            }
-            else
-            {
-                return NotFound();
-            }
-            return Ok();
+            GameModel before = _restRepository.UpdateGame(game);
+            return before;
         }
 
         [HttpDelete]
         [Route("{id}")]
         public GameModel DeleteGame(int id)
         {
-            var game = _context.Games.Where(s => s.GameId == id).First();
-            _context.Remove(game);
-            _context.SaveChanges();
-            return game;
+            _restRepository.DeleteGame(id);
+            return _restRepository.FindGameById(id);
         }
     }
 }

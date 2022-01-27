@@ -14,7 +14,7 @@ namespace ProjectASP.NET
 
         void DeleteGame(int id);
 
-        GameModel UpdateGame(GameModel game);
+        GameModel UpdateGame(GameModel game, UserModel user);
 
         List<GameModel> FindAllGames();
 

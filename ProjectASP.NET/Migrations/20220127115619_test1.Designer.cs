@@ -10,7 +10,7 @@ using ProjectASP.NET.Models;
 namespace ProjectASP.NET.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220122085250_test1")]
+    [Migration("20220127115619_test1")]
     partial class test1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,40 +20,6 @@ namespace ProjectASP.NET.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.13")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("ProjectASP.NET.Models.ApiModel", b =>
-                {
-                    b.Property<int>("GameId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Availability")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Developer")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Platform")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Publisher")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("genre")
-                        .HasColumnType("int");
-
-                    b.HasKey("GameId");
-
-                    b.ToTable("Api");
-                });
 
             modelBuilder.Entity("ProjectASP.NET.Models.GameModel", b =>
                 {
@@ -83,9 +49,6 @@ namespace ProjectASP.NET.Migrations
 
                     b.Property<string>("UserModelUserId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("genre")
                         .HasColumnType("int");

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProjectASP.NET.Filter;
 using ProjectASP.NET.Models;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjectASP.NET.Controllers
 {
+    [DisableBasic]
     public class UserController : Controller
     {
         private readonly ICRUDUserRepository repository;

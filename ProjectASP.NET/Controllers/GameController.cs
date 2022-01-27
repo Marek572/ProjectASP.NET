@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using ProjectASP.NET.Filter;
 using ProjectASP.NET.Models;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProjectASP.NET.Controllers
 {
+    [DisableBasic]
     public class GameController : Controller
     {
         private ICRUDGameRepository repository;
@@ -46,9 +48,9 @@ namespace ProjectASP.NET.Controllers
             return View(repository.FindGameById(id));
         }
 
-        public IActionResult Edit(GameModel game)
+        public IActionResult Edit(GameModel game, UserModel user)
         {
-            repository.UpdateGame(game);
+            repository.UpdateGame(game, user);
             return View("Index", repository.FindAllGames());
         }
 
