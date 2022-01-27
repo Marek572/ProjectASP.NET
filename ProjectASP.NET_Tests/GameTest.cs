@@ -20,7 +20,7 @@ namespace Rest_Api_Tester
             {
                 Availability = true,
                 Title = "God of War",
-                genre = 0/*GameModel.genre(1)*/,
+                genre = GameModel.Genre.Action,
                 Platform = "PS5",
                 Developer = "SIE Santa Monica Studio",
                 Publisher = "PlayStation"
@@ -30,7 +30,7 @@ namespace Rest_Api_Tester
             {
                 Availability = true,
                 Title = "Star Wars Jedi: Fallen Order",
-                genre = 0/*GameModel.genre(1)*/,
+                genre = GameModel.Genre.Adventure,
                 Platform = "PC",
                 Developer = "Respawn Entertainment",
                 Publisher = "Electronic Arts Inc."
@@ -49,7 +49,7 @@ namespace Rest_Api_Tester
             {
                 Availability = true,
                 Title = "God of War",
-                genre = 0/*GameModel.genre(1)*/,
+                genre = GameModel.Genre.Action,
                 Platform = "PS5",
                 Developer = "SIE Santa Monica Studio",
                 Publisher = "PlayStation"
@@ -67,7 +67,7 @@ namespace Rest_Api_Tester
             {
                 Availability = true,
                 Title = "Star Wars Jedi: Fallen Order",
-                genre = 0/*GameModel.genre(1)*/,
+                genre = GameModel.Genre.Adventure,
                 Platform = "PC",
                 Developer = "Respawn Entertainment",
                 Publisher = "Electronic Arts Inc."
@@ -87,13 +87,13 @@ namespace Rest_Api_Tester
             {
                 Availability = true,
                 Title = "God of War",
-                genre = 0/*GameModel.genre(1)*/,
+                genre = GameModel.Genre.Action,
                 Platform = "PS5",
                 Developer = "SIE Santa Monica Studio",
                 Publisher = "PlayStation"
 
             });
-            gameRepository.UpdateGame(1, new GameModel { Availability = true, Title = "Star Wars Jedi: Fallen Order", genre = 0/*GameModel.genre(1)*/, Platform = "PC", Developer = "Respawn Entertainment", Publisher = "Electronic Arts Inc."});
+            gameRepository.UpdateGame(1, new GameModel { Availability = true, Title = "Star Wars Jedi: Fallen Order", genre = GameModel.Genre.Adventure, Platform = "PC", Developer = "Respawn Entertainment", Publisher = "Electronic Arts Inc."});
 
             Assert.Equal("Star Wars Jedi: Fallen Order", gameRepository.FindGameById(1).Title);
             Assert.Equal("PC", gameRepository.FindGameById(1).Platform);

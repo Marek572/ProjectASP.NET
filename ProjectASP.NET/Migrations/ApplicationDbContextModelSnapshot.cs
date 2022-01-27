@@ -48,6 +48,9 @@ namespace ProjectASP.NET.Migrations
                     b.Property<string>("UserModelUserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("genre")
                         .HasColumnType("int");
 

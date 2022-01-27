@@ -31,6 +31,7 @@ namespace ProjectASP.NET.Models
         public string Publisher { get; set; }
 
         public UserModel UserModel { get; set; }
+        public string Username { get; set; }
 
         public enum Genre //TODO: choosing 2 or more genres feature
         {

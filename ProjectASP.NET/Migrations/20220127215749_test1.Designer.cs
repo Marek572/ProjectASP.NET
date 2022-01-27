@@ -10,7 +10,7 @@ using ProjectASP.NET.Models;
 namespace ProjectASP.NET.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220127115619_test1")]
+    [Migration("20220127215749_test1")]
     partial class test1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,6 +49,9 @@ namespace ProjectASP.NET.Migrations
 
                     b.Property<string>("UserModelUserId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("genre")
                         .HasColumnType("int");

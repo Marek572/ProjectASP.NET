@@ -95,8 +95,8 @@ namespace ProjectASP.NET
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                    IdentitySeedData.EnsurePopulated(app);
             });
-            IdentitySeedData.EnsurePopulated(app);
         }
     }
 }

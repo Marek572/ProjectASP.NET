@@ -36,7 +36,8 @@ namespace ProjectASP.NET.Migrations
                     Platform = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Developer = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Publisher = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserModelUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    UserModelUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
