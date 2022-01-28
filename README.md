@@ -3,7 +3,7 @@
 1. Utworzyc migracje dla ApplicatinDbContext i AppIdentityDbContext
 2. Aplikacja po włączeniu ukazuje stronę główną. Należy zalogować się na konto Admina (login: "daisy.diaz", haslo: "zaq1@wsxC") klikając w przycisk "Login", aby mieć dostęp do wszystkich funkcji.
 Admin ma dostęp do:
-  -wyświetlenia listy użytkownikow ("User list"), w której widoczne są wszystkie dane zarejerstrowanych użytkowników,
+  - wyświetlenia listy użytkownikow ("User list"), w której widoczne są wszystkie dane zarejerstrowanych użytkowników,
   -edycji poszczególnych użytkowników za pomocą zielonego przycisku edit lub usuwania czerwonym przyciskiem delete,
   
   -wyświetlania listy gier ("Game list"), w której widoczne są wszystkie dane dodanych gier,
