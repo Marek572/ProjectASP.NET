@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using ProjectASP.NET.Filter;
 using ProjectASP.NET.Models;
 using System;
@@ -20,11 +21,13 @@ namespace ProjectASP.NET.Controllers
 
         public IActionResult Index()
         {
+            ViewData["Username"] = HttpContext.Session.GetString("Username");
             return View("Index",repository.FindAllUsers());
         }
 
         public IActionResult EditUserPage(string id)
         {
+            ViewData["Username"] = HttpContext.Session.GetString("Username");
             return View(repository.FindUserById(id));
         }
     }

@@ -40,5 +40,6 @@ namespace ProjectASP.NET.Models
         [Compare("Password", ErrorMessage = "Passwords do not match!")]
         [DataType(DataType.Password)]
         public string ConfirmPass { get; set; }
+
     }
 }

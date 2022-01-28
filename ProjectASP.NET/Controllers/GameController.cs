@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ProjectASP.NET.Filter;
 using ProjectASP.NET.Models;
@@ -21,6 +22,7 @@ namespace ProjectASP.NET.Controllers
 
         public IActionResult AddGame()
         {
+            ViewData["Username"] = HttpContext.Session.GetString("Username");
             return View();            
         }
 
@@ -29,10 +31,12 @@ namespace ProjectASP.NET.Controllers
         {
             if (ModelState.IsValid)
             {
+                ViewData["Username"] = HttpContext.Session.GetString("Username");
                 return View("ConfirmGame", repository.AddGame(game));
             }
             else
             {
+                ViewData["Username"] = HttpContext.Session.GetString("Username");
                 return View("AddGame");
             }
 
@@ -40,22 +44,26 @@ namespace ProjectASP.NET.Controllers
 
         public IActionResult Index()
         {
+            ViewData["Username"] = HttpContext.Session.GetString("Username");
             return View(repository.FindAllGames());
         }
 
         public IActionResult EditGame(int id)
         {
+            ViewData["Username"] = HttpContext.Session.GetString("Username");
             return View(repository.FindGameById(id));
         }
 
         public IActionResult Edit(GameModel game, UserModel user)
         {
+            ViewData["Username"] = HttpContext.Session.GetString("Username");
             repository.UpdateGame(game, user);
             return View("Index", repository.FindAllGames());
         }
 
         public IActionResult DeleteGame(int id)
         {
+            ViewData["Username"] = HttpContext.Session.GetString("Username");
             repository.DeleteGame(id);
             return View("Index", repository.FindAllGames());
         }

@@ -26,6 +26,8 @@ namespace ProjectASP.NET.Models
 
         /*public Gender Gender { get; set; }*/
 
+        public Role role { get; set; }
+
         [Required(ErrorMessage = "Enter your login!")]
         [MaxLength(20, ErrorMessage = "Your login cannot be longer than 20 characters")]
         public string Username { get; set; }
@@ -47,6 +49,12 @@ namespace ProjectASP.NET.Models
             Male = 0,
             Female = 1,
             Nonspecified = 2
+        }
+
+        public enum Role
+        {
+            [Display(Name = "User")] Low = 1,
+            [Display(Name = "Admin")] High = 2
         }
     }
 }

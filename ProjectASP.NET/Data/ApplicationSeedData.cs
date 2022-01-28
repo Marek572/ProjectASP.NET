@@ -25,7 +25,8 @@ namespace ProjectASP.NET.Data
                         UserId = "1",
                         Name = "Callie",
                         Surname = "Noris",
-                        /*BirthDate = "12/04/1989",*/
+                        /*BirthDate = new DateTime(15/03/1998),*/
+                        role = UserModel.Role.Low,
                         Username = "callie.noris",
                         Email = "callie.noris@gmail.com",
                         Phone = "401503862"
@@ -35,6 +36,8 @@ namespace ProjectASP.NET.Data
                         UserId = "2",
                         Name = "Lillie",
                         Surname = "Bruce",
+                        /*BirthDate = new DateTime(06/05/1996),*/
+                        role = UserModel.Role.Low,
                         Username = "lillie.bruce",
                         Email = "lillie.bruce@gmail.com",
                         Phone = "509735217"
@@ -44,6 +47,8 @@ namespace ProjectASP.NET.Data
                         UserId = "3",
                         Name = "Daisy",
                         Surname = "Diaz",
+                        /*BirthDate = new DateTime(1995/09/04),*/
+                        role = UserModel.Role.High,
                         Username = "daisy.diaz",
                         Email = "daisy.diaz@gmail.com",
                         Phone = "369510437"
@@ -53,6 +58,8 @@ namespace ProjectASP.NET.Data
                         UserId = "4",
                         Name = "Murphy",
                         Surname = "Blender",
+                        /*BirthDate = new DateTime(1999/10/21),*/
+                        role = UserModel.Role.Low,
                         Username = "murphy.blender",
                         Email = "murphy.blender@gmail.com",
                         Phone = "674395291"
@@ -62,6 +69,8 @@ namespace ProjectASP.NET.Data
                         UserId = "5",
                         Name = "Antoni",
                         Surname = "Gunn",
+                        /*BirthDate = new DateTime(1997/04/10),*/
+                        role = UserModel.Role.Low,
                         Username = "antoni.gunn",
                         Email = "antoni.gunn@gmail.com",
                         Phone = "248975123"

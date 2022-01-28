@@ -33,6 +33,7 @@ namespace ProjectASP.NET.Controllers
         [HttpGet]
         public IActionResult Login(string returnUrl)
         {
+            ViewData["Username"] = HttpContext.Session.GetString("Username");
             return View(new LoginModel
             {
                 ReturnUrl = returnUrl
@@ -94,6 +95,7 @@ namespace ProjectASP.NET.Controllers
                     if ((await _signInManager.PasswordSignInAsync(user,
                     loginModel.Password, false, false)).Succeeded)
                     {
+                        HttpContext.Session.SetString("Username", loginModel.Username.ToString());
                         return Redirect(loginModel?.ReturnUrl ?? "/Admin/Index");
                     }
                 }
@@ -113,24 +115,24 @@ namespace ProjectASP.NET.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> DeleteUser(string id)
         {
+            ViewData["Username"] = HttpContext.Session.GetString("Username");
             var IdentityUser = await _userManager.FindByIdAsync(id);
             var result = await _userManager.DeleteAsync(IdentityUser);
             if(result.Succeeded)
             {
                 _repository.DeleteUser(id);
-                await _signInManager.SignOutAsync();
             }
-            return View("../Home/Index", _repository.FindAllUsers());
+            return View("../User/Index", _repository.FindAllUsers());
         }
 
         [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> EditUserData(UserModel user)
         {
+            ViewData["Username"] = HttpContext.Session.GetString("Username");
             IdentityUser IUser = await _userManager.FindByIdAsync(user.UserId);
-            var EmailResult = await _userManager.ChangeEmailAsync(IUser, user.Email, null);
             var UserNameResult = await _userManager.SetUserNameAsync(IUser, user.Username);
-            if(EmailResult.Succeeded && UserNameResult.Succeeded)
+            if(UserNameResult.Succeeded)
             {
                 _repository.UpdateUser(user);
             }
